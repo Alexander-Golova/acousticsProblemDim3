@@ -109,7 +109,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -126,7 +126,7 @@
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
     <ClCompile>
-      <WarningLevel>Level3</WarningLevel>
+      <WarningLevel>Level4</WarningLevel>
       <PrecompiledHeader>Use</PrecompiledHeader>
       <Optimization>MaxSpeed</Optimization>
       <FunctionLevelLinking>true</FunctionLevelLinking>
@@ -145,6 +145,9 @@
     <Text Include="ReadMe.txt" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="basicArrays.h" />
+    <ClInclude Include="basicFunctions.h" />
+    <ClInclude Include="directProblem_utils.h" />
     <ClInclude Include="exact_solution.h" />
     <ClInclude Include="matrix_utils.h" />
     <ClInclude Include="Sources.h" />
@@ -153,6 +156,9 @@
     <ClInclude Include="taskData.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="basicArrays.cpp" />
+    <ClCompile Include="basicFunctions.cpp" />
+    <ClCompile Include="directProblem_utils.cpp" />
     <ClCompile Include="exact_solution.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="matrix_utils.cpp" />

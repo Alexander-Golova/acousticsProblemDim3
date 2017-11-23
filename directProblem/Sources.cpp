@@ -5,8 +5,8 @@ using namespace std;
 
 complex<double> Source::Function(const Point source, const double x, const double y, const double z) const
 {
-	float dist = sqrt(pow(x - source.x, 2) + pow(y - source.y, 2) + pow(z - source.z, 2));
-	return -exp(( 0.0, 1.0 ) * OMEGA * dist / C_0) / (4 * PI * dist);
+	double dist = sqrt(pow(x - source.x, 2) + pow(y - source.y, 2) + pow(z - source.z, 2));
+	return -exp(( 0.0, 1.0 ) * OMEGA * dist / C_0) / (FOUR_PI * dist);
 }
 
 void WriteSourceValues(const Source & source)

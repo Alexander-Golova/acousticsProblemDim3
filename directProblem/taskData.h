@@ -7,7 +7,8 @@ struct Point
 	double z;
 };
 
-const double PI = 3.14159265359;
+const double PI = 3.141592653590;
+const double FOUR_PI = 12.566370614359;
 
 // задание характеристик поля
 const double OMEGA = 1.0;
