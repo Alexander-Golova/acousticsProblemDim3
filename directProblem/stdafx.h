@@ -4,7 +4,6 @@
 
 #include <stdio.h>
 #include <tchar.h>
-
 #include <cmath>
 #include <complex>
 #include <iostream>

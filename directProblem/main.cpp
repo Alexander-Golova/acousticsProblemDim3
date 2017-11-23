@@ -20,7 +20,7 @@ int main()
 	vector<vector<vector<double>>> xi(NUMBER_PARTITION_POINTS + 1,
 		vector<vector<double>>(NUMBER_PARTITION_POINTS + 1,
 			vector<double>(NUMBER_PARTITION_POINTS + 1, 0.0)));
-
+	
 	GetExactSolution(xi);
 
 	clock_t time = clock();
@@ -57,19 +57,19 @@ int main()
 	vector<vector<complex<double>>> overline_u(NUMBER_PARTITION_POINTS + 1,
 		vector<complex<double>>(NUMBER_PARTITION_POINTS + 1, complex<double>()));
 
-	GetSubstantiveMatrix(a, xi, substantiveMatrix);
-	Lasting("The computation time of the matrix inside the squared", time);
+	//GetSubstantiveMatrix(a, xi, substantiveMatrix);
+	//Lasting("The computation time of the matrix inside the squared", time);
 
-	ofstream file_overline_u("matrix_overline_u.txt");
-	file_overline_u << fixed << setprecision(6);
+	//ofstream file_overline_u("matrix_overline_u.txt");
+	//file_overline_u << fixed << setprecision(6);
 
 	for (size_t count = 0; count < source.numberSource; ++count)
 	{
-		GetRightPartEquation(source, count, rightPartEquation);
-		SolveSlauGaussa(substantiveMatrix, rightPartEquation, numbered_u);
-		InverseRenumbering(numbered_u, u);
-		Lasting("Finding the acoustic pressure in R", time);
-
+		//GetRightPartEquation(source, count, rightPartEquation);
+		//SolveSlauGaussa(substantiveMatrix, rightPartEquation, numbered_u);
+		//InverseRenumbering(numbered_u, u);
+		//Lasting("Finding the acoustic pressure in R", time);
+		/*
 		GetOverlineU(source, count, overline_a, xi, u, overline_u);
 		for (size_t i = 0; i <= NUMBER_PARTITION_POINTS; ++i)
 		{
@@ -79,8 +79,9 @@ int main()
 			}
 		}
 		Lasting("Finding the acoustic pressure in X", time);
+		*/
 	}
-	file_overline_u.close();
+	//file_overline_u.close();
 
 	Lasting("The total time of the program", timeBegin);
 	return 0;

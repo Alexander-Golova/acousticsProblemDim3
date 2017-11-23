@@ -1,7 +1,7 @@
 #pragma once
 
 // функция Грина
-std::complex<float> G(float x_1, float x_2, float x_3, float y_1, float y_2, float y_3);
+std::complex<double> G(double x_1, double x_2, double x_3, double y_1, double y_2, double y_3);
 
 //печать времени
 void Lasting(const std::string & st, clock_t & time);
