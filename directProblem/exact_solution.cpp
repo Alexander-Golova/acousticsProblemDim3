@@ -20,7 +20,7 @@ void GetExactSolution(vector<vector<vector<double>>> & xi)
 	}
 }
 
-void WriteSolutionFile(vector<vector<vector<double>>> & xi)
+void WriteSolutionFile(const vector<vector<vector<double>>> & xi)
 {
 	ofstream file_xi("exact_xi.txt");
 	file_xi << fixed << setprecision(6);

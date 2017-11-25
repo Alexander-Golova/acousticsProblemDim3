@@ -77,8 +77,8 @@ void GetBasicArrays(vector<vector<vector<vector<vector<vector<complex<double>>>>
 	}
 }
 
-void WriteBasicArraysFile(vector<vector<vector<vector<vector<vector<complex<double>>>>>>> & a,
-	vector<vector<vector<vector<vector<complex<double>>>>>> & overline_a)
+void WriteBasicArraysFile(const vector<vector<vector<vector<vector<vector<complex<double>>>>>>> & a,
+	const vector<vector<vector<vector<vector<complex<double>>>>>> & overline_a)
 {
 	ofstream f_overline_a("matrix_overline_a.txt");
 	f_overline_a << fixed << setprecision(6);
