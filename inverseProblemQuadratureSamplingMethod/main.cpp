@@ -1,6 +1,8 @@
 #include "stdafx.h"
-#include "../directProblemQuadratureSamplingMethod/basicFunctions.h"
-#include "../directProblemQuadratureSamplingMethod/matrix_utils.h"
+#include "taskData.h"
+#include "basicFunctions.h"
+#include "matrix_utils.h"
+#include "Sources.h"
 
 using namespace std;
 
@@ -374,7 +376,7 @@ int main()
 		}
 		
 		// находим матрицы А и В
-		MultiplicationTransposedMatrix(N_cube, N_cube, N_cube, F_01, F_01, A_00);
+		MultTransposedMatrix(F_01, F_01, A_00);
 		MultiplicationTransposedMatrix(N_cube, N_square, N_cube, F_02, F_02, auxiliaryMatrix);
 		AdditionOfSquareMatrices(N_cube, A_00, auxiliaryMatrix);
 

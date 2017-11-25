@@ -1,72 +1,46 @@
 ﻿#include "stdafx.h"
+
+#include "taskData.h"
 #include "basicFunctions.h"
-#include "sourceFunction.h"
+#include "Sources.h"
 #include "matrix_utils.h"
+#include "exact_solution.h"
 
 using namespace std;
 
 int main()
 {
 	const size_t N = NUMBER_PARTITION_POINTS;
-	const float h = (float)a_R / N;
+	const double h = DOMAIN_IN_HOMOGENEITY / NUMBER_PARTITION_POINTS;
 
 	// выделение памяти для акустического давления u
-	vector<vector<vector<complex<float>>>> u(N + 1, vector<vector<complex<float>>>(N + 1,
-		vector<complex<float>>(N + 1, complex<float>())));
+	vector<vector<vector<complex<double>>>> u(N + 1, vector<vector<complex<double>>>(N + 1,
+		vector<complex<double>>(N + 1, complex<double>())));
 
 	// выделение памяти для точного решения xi
-	vector<vector<vector<float>>> xi(N + 1, vector<vector<float>>(N + 1, vector<float>(N + 1, 0.0f)));
+	vector<vector<vector<double>>> xi(N + 1, vector<vector<double>>(N + 1, vector<double>(N + 1, 0.0)));
 
-	// задание точного решения \xi
-	for (size_t i = 0; i <= N; ++i)
-	{
-		for (size_t j = 0; j <= N; ++j)
-		{
-			for (size_t k = 0; k <= N; ++k)
-			{
-				xi[i][j][k] = 0.0f;
-			}
-		}
-	}
-	for (size_t i = 5; i <= 8; ++i)
-	{
-		for (size_t j = 5; j <= 8; ++j)
-		{
-			for (size_t k = 7; k <= 10; ++k)
-			{
-				xi[i][j][k] = 0.2f;
-			}
-		}
-	}
+	GetExactSolution(xi);
+	WriteSolutionFile(xi);
 
-	//печатаем точное решение в файл
-	ofstream f_xi("exact_xi.txt");
-	for (size_t i = 0; i <= N; ++i)
-	{
-		for (size_t j = 0; j <= N; ++j)
-		{
-			for (size_t k = 0; k <= N; ++k)
-			{
-				f_xi << fixed << setprecision(6) << xi[i][j][k] << " ";
-			}
-		}
-	}
-	f_xi.close();
+	clock_t time = clock();
+	clock_t timeBegin = clock();
+
 
 	// выделение памяти под 6-ти мерный "квадратный" комплексный массив
-	vector<vector<vector<vector<vector<vector<complex<float>>>>>>> a(N + 1, 
-		vector<vector<vector<vector<vector<complex<float>>>>>>(N + 1,
-			vector<vector<vector<vector<complex<float>>>>>(N + 1,
-				vector<vector<vector<complex<float>>>>(N + 1,
-					vector<vector<complex<float>>>(N + 1,
-						vector<complex<float>>(N + 1, complex<float>()))))));
+	vector<vector<vector<vector<vector<vector<complex<double>>>>>>> a(N + 1,
+		vector<vector<vector<vector<vector<complex<double>>>>>>(N + 1,
+			vector<vector<vector<vector<complex<double>>>>>(N + 1,
+				vector<vector<vector<complex<double>>>>(N + 1,
+					vector<vector<complex<double>>>(N + 1,
+						vector<complex<double>>(N + 1, complex<double>()))))));
 
 	// выделение памяти под 5-ти мерный "квадратный" комплексный массив
-	vector<vector<vector<vector<vector<complex<float>>>>>> overline_a(N + 1,
-		vector<vector<vector<vector<complex<float>>>>>(N + 1,
-			vector<vector<vector<complex<float>>>>(N + 1,
-				vector<vector<complex<float>>>(N + 1,
-					vector<complex<float>>(N + 1, complex<float>())))));
+	vector<vector<vector<vector<vector<complex<double>>>>>> overline_a(N + 1,
+		vector<vector<vector<vector<complex<double>>>>>(N + 1,
+			vector<vector<vector<complex<double>>>>(N + 1,
+				vector<vector<complex<double>>>(N + 1,
+					vector<complex<double>>(N + 1, complex<float>())))));
 
 	// Начало вычислений основных матриц
 	// начало счета времени
@@ -75,20 +49,20 @@ int main()
 	timeStart = clock();
 
 	// для индексов метода квадратур
-	vector<float> index(N + 1);
+	vector<double> index(N + 1);
 	for (size_t i = 1; i < N; ++i)
 	{
 		if (i % 2 != 0)
 		{
-			index[i] = 1.333333f;
+			index[i] = 4.0 / 3;
 		}
 		else
 		{
-			index[i] = 0.666667f;
+			index[i] = 2.0 / 3;
 		}
 	}
-	index[0] = 0.333333f;
-	index[N] = 0.333333f;
+	index[0] = 1.0 / 3;
+	index[N] = 1.0 / 3;
 
 	// нахождение массива a
 	float dist;

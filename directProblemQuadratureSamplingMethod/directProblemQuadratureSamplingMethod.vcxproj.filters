@@ -27,10 +27,16 @@
     <ClInclude Include="basicFunctions.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="sourceFunction.h">
+    <ClInclude Include="matrix_utils.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="matrix_utils.h">
+    <ClInclude Include="taskData.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Sources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exact_solution.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -44,10 +50,13 @@
     <ClCompile Include="basicFunctions.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="sourceFunction.cpp">
+    <ClCompile Include="matrix_utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="matrix_utils.cpp">
+    <ClCompile Include="Sources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="exact_solution.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

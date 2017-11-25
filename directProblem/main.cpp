@@ -22,6 +22,7 @@ int main()
 			vector<double>(NUMBER_PARTITION_POINTS + 1, 0.0)));
 	
 	GetExactSolution(xi);
+	WriteSolutionFile(xi);
 
 	clock_t time = clock();
 	clock_t timeBegin = clock();
@@ -52,24 +53,26 @@ int main()
 	// substantiveMatrix[ii][jj] * numbered_u[jj] = rightPartEquation[ii]
 	vector<complex<double>> rightPartEquation(N_QUBE, complex<double>());
 	vector<complex<double>> numbered_u(N_QUBE);
+
 	vector<vector<complex<double>>> substantiveMatrix(N_QUBE,
 		vector<complex<double>>(N_QUBE, complex<double>()));
+
 	vector<vector<complex<double>>> overline_u(NUMBER_PARTITION_POINTS + 1,
 		vector<complex<double>>(NUMBER_PARTITION_POINTS + 1, complex<double>()));
 
-	//GetSubstantiveMatrix(a, xi, substantiveMatrix);
-	//Lasting("The computation time of the matrix inside the squared", time);
+	GetSubstantiveMatrix(a, xi, substantiveMatrix);
+	Lasting("The computation time of the matrix inside the squared", time);
 
-	//ofstream file_overline_u("matrix_overline_u.txt");
-	//file_overline_u << fixed << setprecision(6);
+	ofstream file_overline_u("matrix_overline_u.txt");
+	file_overline_u << fixed << setprecision(6);
 
 	for (size_t count = 0; count < source.numberSource; ++count)
 	{
-		//GetRightPartEquation(source, count, rightPartEquation);
-		//SolveSlauGaussa(substantiveMatrix, rightPartEquation, numbered_u);
-		//InverseRenumbering(numbered_u, u);
-		//Lasting("Finding the acoustic pressure in R", time);
-		/*
+		GetRightPartEquation(source, count, rightPartEquation);
+		SolveSlauGaussa(substantiveMatrix, rightPartEquation, numbered_u);
+		InverseRenumbering(numbered_u, u);
+		Lasting("Finding the acoustic pressure in R", time);
+		
 		GetOverlineU(source, count, overline_a, xi, u, overline_u);
 		for (size_t i = 0; i <= NUMBER_PARTITION_POINTS; ++i)
 		{
@@ -78,10 +81,9 @@ int main()
 				file_overline_u << overline_u[i][j] << " ";
 			}
 		}
-		Lasting("Finding the acoustic pressure in X", time);
-		*/
+		Lasting("Finding the acoustic pressure in X", time);		
 	}
-	//file_overline_u.close();
+	file_overline_u.close();
 
 	Lasting("The total time of the program", timeBegin);
 	return 0;
