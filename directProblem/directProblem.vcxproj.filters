@@ -24,25 +24,16 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="matrix_utils.h">
+    <ClInclude Include="CInhomogeneity.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="taskData.h">
+    <ClInclude Include="BasicDataProblem.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Sources.h">
+    <ClInclude Include="CSourses.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="exact_solution.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="basicArrays.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="basicFunctions.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="directProblem_utils.h">
+    <ClInclude Include="CDetectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -53,22 +44,16 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="matrix_utils.cpp">
+    <ClCompile Include="CInhomogeneity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Sources.cpp">
+    <ClCompile Include="CSourses.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="exact_solution.cpp">
+    <ClCompile Include="CDetectors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="basicArrays.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="basicFunctions.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="directProblem_utils.cpp">
+    <ClCompile Include="BasicDataProblem.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

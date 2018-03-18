@@ -1,53 +1,76 @@
 ﻿#include "stdafx.h"
-#include "taskData.h"
-#include "Sources.h"
-#include "matrix_utils.h"
-#include "exact_solution.h"
-#include "basicArrays.h"
-#include "basicFunctions.h"
-#include "directProblem_utils.h"
+#include "BasicDataProblem.h"
+#include "CDetectors.h"
+#include "CSourses.h"
+#include "CInhomogeneity.h"
 
 using namespace std;
 
+
 int main()
 {
-	const Source source;
-
-	vector<vector<vector<complex<double>>>> u(NUMBER_PARTITION_POINTS + 1,
-		vector<vector<complex<double>>>(NUMBER_PARTITION_POINTS + 1,
-			vector<complex<double>>(NUMBER_PARTITION_POINTS + 1, complex<double>())));
-
-	vector<vector<vector<double>>> xi(NUMBER_PARTITION_POINTS + 1,
-		vector<vector<double>>(NUMBER_PARTITION_POINTS + 1,
-			vector<double>(NUMBER_PARTITION_POINTS + 1, 0.0)));
+	// задаём структуры источников
+	CSourses source;
 	
-	GetExactSolution(xi);
-	WriteSolutionFile(xi);
+	// задаём координаты источников
+	source.SetCoordinate({ 0.0f, 0.0f, -0.1f });
+	source.SetCoordinate({ 0.0f, 1.0f, -0.1f });
+	source.SetCoordinate({ 1.0f, 0.0f, -0.1f });
+	source.SetCoordinate({ 1.0f, 1.0f, -0.1f });
 
-	clock_t time = clock();
-	clock_t timeBegin = clock();
+	// задаём неоднородность
+	CInhomogeneity inhomogeneity;
+	/*
+	// задаём координату противоположной вершины
+	// Первая вершина O(0.0f, 0.0f, 0.0f)
+	inhomogeneity.SetCoordinate({ 1.0f, 1.0f, 1.0f });
+	
+	// определем индекс рефракции на неоднородности
+	inhomogeneity.SetRefractionIndex();
+	
+	// печатаем её значение в файл
+	inhomogeneity.WriteRefractionIndex(string("refraction_index.txt"));
 
-	vector<vector<vector<vector<vector<vector<complex<double>>>>>>> a(NUMBER_PARTITION_POINTS + 1,
-		vector<vector<vector<vector<vector<complex<double>>>>>>(NUMBER_PARTITION_POINTS + 1,
-			vector<vector<vector<vector<complex<double>>>>>(NUMBER_PARTITION_POINTS + 1,
-				vector<vector<vector<complex<double>>>>(NUMBER_PARTITION_POINTS + 1,
-					vector<vector<complex<double>>>(NUMBER_PARTITION_POINTS + 1,
-						vector<complex<double>>(NUMBER_PARTITION_POINTS + 1, complex<double>()))))));
+	// передаём неоднородности координаты источников
+	inhomogeneity.SetCoordinateSourses(source.GetCoordinates());
 
-	vector<vector<vector<vector<vector<complex<double>>>>>> overline_a(NUMBER_PARTITION_POINTS + 1,
-		vector<vector<vector<vector<complex<double>>>>>(NUMBER_PARTITION_POINTS + 1,
-			vector<vector<vector<complex<double>>>>(NUMBER_PARTITION_POINTS + 1,
-				vector<vector<complex<double>>>(NUMBER_PARTITION_POINTS + 1,
-					vector<complex<double>>(NUMBER_PARTITION_POINTS + 1, complex<double>())))));
+	// печатаем значение источников на неоднородности
+	inhomogeneity.WriteSourses(string("Source_inhomogeneity.txt.txt"));
 
-	GetBasicArrays(a, overline_a);
-	Lasting("Time calculation of basic matrices", time);
+	/*
+	// определяем массив А на неоднородности
+	inhomogeneity.SetArrayA();
 
-	WriteBasicArraysFile(a, overline_a);
-	Lasting("Download time major arrays", time);
+	// печатаем массив А
+	inhomogeneity.WriteArrayA(string("matrix_a.txt"));
 
-	WriteSourceValues(source);
-	Lasting("The computation time of the source function", time);
+	// задаём детекторы
+	CDetectors detectors;
+
+	// задаём уровень детектора
+	detectors.SetLevel(1.1f);
+
+	// задаём шаг для интегрирования
+	detectors.SetStep(inhomogeneity.GetStep());
+
+	// определяем массив overline_А на детекторе
+	detectors.SetArrayA();
+
+	// печатаем массив overline_А
+	detectors.WriteArrayA(string("matrix_overline_a"));
+
+	// пробегаемся по всем источникам
+	for (size_t count = 0; count < source.GetNumber(); ++count)
+	{
+		// 
+	}
+
+	// получаем поле в детекторе
+//	detectors.SetFields();
+
+
+
+	/*
 
 	// для нахождения u^(1) составляем СЛАУ основная матрица * u^(1) = правой части
 	// substantiveMatrix[ii][jj] * numbered_u[jj] = rightPartEquation[ii]
@@ -86,5 +109,6 @@ int main()
 	file_overline_u.close();
 
 	Lasting("The total time of the program", timeBegin);
+	*/
 	return 0;
 }
