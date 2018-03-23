@@ -5,6 +5,7 @@ using namespace std;
 
 CDetectors::CDetectors()
 {
+	/*
 	for (size_t i = 0; i < N_SQUARED; ++i)
 	{
 		m_fields[i] = { 0.0f, 0.0f };
@@ -13,6 +14,21 @@ CDetectors::CDetectors()
 			m_a[i][j] = { 0.0f, 0.0f };
 		}
 	}
+	*/
+	// находим индексы метода квадратур
+	for (size_t i = 1; i < NUMBER_PARTITION_POINTS; ++i)
+	{
+		if (i % 2 != 0)
+		{
+			m_index[i] = 4.0f / 3;
+		}
+		else
+		{
+			m_index[i] = 2.0f / 3;
+		}
+	}
+	m_index[0] = 1.0f / 3;
+	m_index[NUMBER_PARTITION_POINTS] = 1.0f / 3;
 }
 
 
@@ -48,21 +64,6 @@ void CDetectors::WriteFields(string name)
 
 void CDetectors::SetArrayA()
 {
-	// находим индексы метода квадратур
-	for (size_t i = 1; i < NUMBER_PARTITION_POINTS; ++i)
-	{
-		if (i % 2 != 0)
-		{
-			m_index[i] = 4.0f / 3;
-		}
-		else
-		{
-			m_index[i] = 2.0f / 3;
-		}
-	}
-	m_index[0] = 1.0f / 3;
-	m_index[NUMBER_PARTITION_POINTS] = 1.0f / 3;
-
 	float dist;
 	for (size_t i = 0; i < N; ++i)
 	{

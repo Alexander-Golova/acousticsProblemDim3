@@ -6,47 +6,7 @@ using namespace std;
 
 CInhomogeneity::CInhomogeneity()
 {
-	for (size_t i = 0; i < N; ++i)
-	{
-		for (size_t j = 0; j < N; ++j)
-		{
-			for (size_t k = 0; k < N; ++k)
-			{
-				m_refractionIndex[i][j][k] = 0.0f;
-			}
-		}
-	}
-
-	for (size_t i = 0; i < N_QUBE; ++i)
-	{
-		m_fields[i] = { 0.0f, 0.0f };
-		for (size_t j = 0; j < N_QUBE; ++j)
-		{
-			m_substantiveMatrix[i][j] = { 0.0f, 0.0f };
-		}
-	}
-
-	for (size_t i = 0; i < N; ++i)
-	{
-		for (size_t j = 0; j < N; ++j)
-		{
-			for (size_t k = 0; k < N; ++k)
-			{
-				for (size_t p = 0; p < N; ++p)
-				{
-					for (size_t q = 0; q < N; ++q)
-					{
-						for (size_t r = 0; r < N; ++r)
-						{
-							m_a = { 0.0f, 0.0f };
-						}
-					}
-				}
-			}
-		}
-	}
-
-	// находим индексы метода квадратур
+	vector<vector<vector<float>>> xi(N, vector<vector<float>>(N, vector<float>(N, 0.0f)));
 	for (size_t i = 1; i < NUMBER_PARTITION_POINTS; ++i)
 	{
 		if (i % 2 != 0)
@@ -60,7 +20,6 @@ CInhomogeneity::CInhomogeneity()
 	}
 	m_index[0] = 1.0f / 3;
 	m_index[NUMBER_PARTITION_POINTS] = 1.0f / 3;
-
 }
 
 
@@ -145,6 +104,7 @@ void CInhomogeneity::WriteSourses(string name)
 void CInhomogeneity::SetArrayA()
 {
 	float dist;
+	complex<float> temp;
 	for (size_t i = 0; i < N; ++i)
 	{
 		for (size_t j = 0; j < N; ++j)
@@ -160,10 +120,12 @@ void CInhomogeneity::SetArrayA()
 							if ((i != p) || (q != j) || (r != k))
 							{
 								dist = sqrtf((i - p) * (i - p) * m_step.x * m_step.x + (j - q) * (j - q) * m_step.y * m_step.y + (k - r) * (k - r) * m_step.z * m_step.z);
-								m_a[i][j][k][p][q][r] = m_index[p] * m_index[q] * m_index[r];
-								m_a[i][j][k][p][q][r] *= exp(-dist * I * omega / c_0) / dist;
-								m_a[i][j][k][p][q][r] *= omega * omega * m_step.x * m_step.y * m_step.z;
-								m_a[i][j][k][p][q][r] *= INV_FOUR_PI;
+								temp = exp(-dist * I * omega / c_0) / dist;
+								temp *= m_index[p] * m_index[q] * m_index[r];
+								temp *= omega * omega * m_step.x * m_step.y * m_step.z;
+								temp *= INV_FOUR_PI;
+								//m_a_re[i][j][k][p][q][r] = temp.real();
+								//m_a_im[i][j][k][p][q][r] = temp.imag();
 							}
 						}
 					}
@@ -189,7 +151,8 @@ void CInhomogeneity::WriteArrayA(std::string name) const
 					{
 						for (size_t r = 0; r < N; ++r)
 						{
-							f_a << m_a[i][j][k][p][q][r] << " ";
+							//f_a << m_a_re[i][j][k][p][q][r] << " ";
+							//f_a << m_a_im[i][j][k][p][q][r] << " ";
 						}
 					}
 				}

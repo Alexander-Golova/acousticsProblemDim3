@@ -1,49 +1,45 @@
 ﻿#include "stdafx.h"
 #include "BasicDataProblem.h"
-#include "CDetectors.h"
-#include "CSourses.h"
-#include "CInhomogeneity.h"
+//#include "CDetectors.h"
+#include "Sources.h"
+//#include "CInhomogeneity.h"
+#include "Inhomogeneity.h"
 
 using namespace std;
 
 
 int main()
 {
-	// задаём структуры источников
-	CSourses source;
+	// задаём источники
+	Sources source;
 	
-	// задаём координаты источников
-	source.SetCoordinate({ 0.0f, 0.0f, -0.1f });
-	source.SetCoordinate({ 0.0f, 1.0f, -0.1f });
-	source.SetCoordinate({ 1.0f, 0.0f, -0.1f });
-	source.SetCoordinate({ 1.0f, 1.0f, -0.1f });
+	// память для индекса рефракции xi
+	vector<float> xi(N_QUBE);
 
-	// задаём неоднородность
-	CInhomogeneity inhomogeneity;
-	/*
-	// задаём координату противоположной вершины
-	// Первая вершина O(0.0f, 0.0f, 0.0f)
-	inhomogeneity.SetCoordinate({ 1.0f, 1.0f, 1.0f });
+	// определем индекс рефракции на неоднородности и печатаем её значение в файл
+	SetRefractionIndex(xi);
+	WriteRefractionIndex(xi, string("refraction_index.txt"));
 	
-	// определем индекс рефракции на неоднородности
-	inhomogeneity.SetRefractionIndex();
-	
-	// печатаем её значение в файл
-	inhomogeneity.WriteRefractionIndex(string("refraction_index.txt"));
+	// объявляем массив a, считаем и пишем в файл
+	vector<complex<float>> a(N_SIXTH_DEGREE);
+	SetArrayA(a);
+	WriteArrayA(a, string("matrix_a.txt"));
+
+	// объявляем массив overline_a, считаем и пишем в файл
+	//vector<complex<float>> overline_a(N_FIFTH_DEGREE, complex<float>());
 
 	// передаём неоднородности координаты источников
-	inhomogeneity.SetCoordinateSourses(source.GetCoordinates());
+	//inhomogeneity.SetCoordinateSourses(source.GetCoordinates());
 
 	// печатаем значение источников на неоднородности
-	inhomogeneity.WriteSourses(string("Source_inhomogeneity.txt.txt"));
+	//inhomogeneity.WriteSourses(string("Source_inhomogeneity.txt.txt"));
 
-	/*
 	// определяем массив А на неоднородности
-	inhomogeneity.SetArrayA();
+	//inhomogeneity.SetArrayA();
 
 	// печатаем массив А
-	inhomogeneity.WriteArrayA(string("matrix_a.txt"));
-
+	//inhomogeneity.WriteArrayA(string("matrix_a.txt"));
+	/*
 	// задаём детекторы
 	CDetectors detectors;
 

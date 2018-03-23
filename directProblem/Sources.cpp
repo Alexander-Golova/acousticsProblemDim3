@@ -3,34 +3,34 @@
 
 using namespace std;
 
-complex<double> Source::Function(const Point source, const double x, const double y, const double z) const
+complex<float> Sources::Function(const Point source, const float x, const float y, const float z) const
 {
-	double dist = sqrt(pow(x - source.x, 2) + pow(y - source.y, 2) + pow(z - source.z, 2));
-	return -exp(( 0.0, 1.0 ) * OMEGA * dist / C_0) / (FOUR_PI * dist);
+	float dist = sqrtf(pow(x - source.x, 2) + pow(y - source.y, 2) + pow(z - source.z, 2));
+	return -exp(I * omega * dist / c_0) * INV_FOUR_PI / dist;
 }
 
-void WriteSourceValues(const Source & source)
+void WriteSourceValues(const Sources & source, std::string name)
 {
-	ofstream fileSource("Source.txt");
+	ofstream fileSource(name);
 	fileSource << fixed << setprecision(6);
 	for (size_t count = 0; count < source.numberSource; ++count)
 	{
-		for (size_t i = 0; i <= NUMBER_PARTITION_POINTS; ++i)
+		for (size_t i = 0; i < N; ++i)
 		{
-			for (size_t j = 0; j <= NUMBER_PARTITION_POINTS; ++j)
+			for (size_t j = 0; j < N; ++j)
 			{
-				for (size_t k = 0; k <= NUMBER_PARTITION_POINTS; ++k)
+				for (size_t k = 0; k < N; ++k)
 				{
-					fileSource << source.Function(source.node[count], i * h, j * h, k * h) << " ";
+					fileSource << source.Function(source.node[count], i * step, j * step, k * step) << " ";
 				}
 			}
 		}
 
-		for (size_t i = 0; i <= NUMBER_PARTITION_POINTS; ++i)
+		for (size_t i = 0; i < N; ++i)
 		{
-			for (size_t j = 0; j <= NUMBER_PARTITION_POINTS; ++j)
+			for (size_t j = 0; j < N; ++j)
 			{
-				fileSource << source.Function(source.node[count], i * h, j * h, receiver) << " ";
+				fileSource << source.Function(source.node[count], i * step, j * step, detectorLevel) << " ";
 			}
 		}
 	}

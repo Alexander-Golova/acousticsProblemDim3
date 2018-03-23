@@ -13,5 +13,4 @@
 #include <time.h>
 #include <vector>
 #include <algorithm>
-#include <array>
 #include <string>

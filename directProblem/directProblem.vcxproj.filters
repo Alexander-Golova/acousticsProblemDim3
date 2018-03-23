@@ -36,6 +36,12 @@
     <ClInclude Include="CDetectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Sources.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inhomogeneity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -54,6 +60,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BasicDataProblem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Sources.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Inhomogeneity.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
