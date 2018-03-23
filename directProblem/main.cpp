@@ -19,26 +19,20 @@ int main()
 	// определем индекс рефракции на неоднородности и печатаем её значение в файл
 	SetRefractionIndex(xi);
 	WriteRefractionIndex(xi, string("refraction_index.txt"));
-	
-	// объявляем массив a, считаем и пишем в файл
+
+	// объявляем массив a
 	vector<complex<float>> a(N_SIXTH_DEGREE);
+	//определяем массив a на неоднородности
 	SetArrayA(a);
+	// пишем в файл массив А
 	WriteArrayA(a, string("matrix_a.txt"));
 
-	// объявляем массив overline_a, считаем и пишем в файл
-	//vector<complex<float>> overline_a(N_FIFTH_DEGREE, complex<float>());
+	// объявляем массив overline_a
+	vector<complex<float>> overline_a(N_FIFTH_DEGREE);
+	//определяем массив overline_a на детекторе
 
-	// передаём неоднородности координаты источников
-	//inhomogeneity.SetCoordinateSourses(source.GetCoordinates());
+	// пишем в файл массив overline_a
 
-	// печатаем значение источников на неоднородности
-	//inhomogeneity.WriteSourses(string("Source_inhomogeneity.txt.txt"));
-
-	// определяем массив А на неоднородности
-	//inhomogeneity.SetArrayA();
-
-	// печатаем массив А
-	//inhomogeneity.WriteArrayA(string("matrix_a.txt"));
 	/*
 	// задаём детекторы
 	CDetectors detectors;
