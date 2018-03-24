@@ -1,8 +1,7 @@
 ﻿#include "stdafx.h"
 #include "BasicDataProblem.h"
-//#include "CDetectors.h"
+#include "Detectors.h"
 #include "Sources.h"
-//#include "CInhomogeneity.h"
 #include "Inhomogeneity.h"
 
 using namespace std;
@@ -27,10 +26,11 @@ int main()
 	// пишем в файл массив А
 	WriteArrayA(a, string("matrix_a.txt"));
 
+	// на детекторе
 	// объявляем массив overline_a
 	vector<complex<float>> overline_a(N_FIFTH_DEGREE);
 	//определяем массив overline_a на детекторе
-
+	SetArrayOverlineA(overline_a);
 	// пишем в файл массив overline_a
 
 	/*

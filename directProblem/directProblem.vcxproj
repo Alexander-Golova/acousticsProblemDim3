@@ -150,6 +150,7 @@
     <ClInclude Include="CDetectors.h" />
     <ClInclude Include="CInhomogeneity.h" />
     <ClInclude Include="CSourses.h" />
+    <ClInclude Include="Detectors.h" />
     <ClInclude Include="Inhomogeneity.h" />
     <ClInclude Include="Sources.h" />
     <ClInclude Include="stdafx.h" />
@@ -160,6 +161,7 @@
     <ClCompile Include="CDetectors.cpp" />
     <ClCompile Include="CInhomogeneity.cpp" />
     <ClCompile Include="CSourses.cpp" />
+    <ClCompile Include="Detectors.cpp" />
     <ClCompile Include="Inhomogeneity.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Sources.cpp" />
