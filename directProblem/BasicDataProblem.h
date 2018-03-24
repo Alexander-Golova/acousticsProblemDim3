@@ -31,7 +31,7 @@ const float FOUR_PI = 12.566370614359f; // TODO
 const float INV_FOUR_PI = 0.079577471545f;
 
 // уровень приёмника
-const float detectorLevel = -0.1f;
+const float detectorLevel = 1.1f;
 
 struct Point
 {

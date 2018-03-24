@@ -19,9 +19,10 @@ int main()
 	SetRefractionIndex(xi);
 	WriteRefractionIndex(xi, string("refraction_index.txt"));
 
+	// на неоднородности
 	// объявляем массив a
 	vector<complex<float>> a(N_SIXTH_DEGREE);
-	//определяем массив a на неоднородности
+	//определяем массив a 
 	SetArrayA(a);
 	// пишем в файл массив А
 	WriteArrayA(a, string("matrix_a.txt"));
@@ -32,6 +33,13 @@ int main()
 	//определяем массив overline_a на детекторе
 	SetArrayOverlineA(overline_a);
 	// пишем в файл массив overline_a
+	WriteArrayOverlineA(overline_a, string("matrix_overline_a.txt"));
+
+	// память для поля в детекторе. Значение этого поля передаём в прямую задачу
+	vector<complex<float>> DetectorsFields(N_QUBE);
+
+	// печатаем значение акустического поля на неоднородности и на детекотре в файл
+	WriteSourceValues(source, string("Source.txt"));
 
 	/*
 	// задаём детекторы
@@ -56,6 +64,7 @@ int main()
 	}
 
 	// получаем поле в детекторе
+
 //	detectors.SetFields();
 
 

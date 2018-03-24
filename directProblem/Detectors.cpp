@@ -34,3 +34,14 @@ void SetArrayOverlineA(std::vector<std::complex<float>> & overline_a)
 		}
 	}
 }
+
+void WriteArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::string name)
+{
+	ofstream f_overline_a(name);
+	f_overline_a << fixed << setprecision(6);
+	for (size_t i = 0; i < N_FIFTH_DEGREE; ++i)
+	{
+		f_overline_a << overline_a[i] << " ";
+	}
+	f_overline_a.close();
+}
