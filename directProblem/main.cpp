@@ -5,12 +5,16 @@
 #include "Inhomogeneity.h"
 #include "directProblemUtils.h"
 #include "matrix_utils.h"
+#include <boost/timer.hpp>
 
 using namespace std;
 
 
 int main()
 {
+	boost::timer t;
+	t.restart();
+
 	// задаём источники
 	Sources source;
 	
@@ -69,6 +73,11 @@ int main()
 			file_overline_u << overline_u[i] << " ";
 		}
 	}
+
+	double duration = t.elapsed();
+
+	cout << "The total time of the program " << duration << std::endl;
+
 
 /*
 	Lasting("The computation time of the matrix inside the squared", time);
