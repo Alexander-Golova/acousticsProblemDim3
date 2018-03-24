@@ -45,6 +45,12 @@
     <ClInclude Include="Detectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="directProblemUtils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="matrix_utils.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -72,6 +78,12 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Detectors.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="directProblemUtils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matrix_utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

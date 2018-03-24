@@ -3,6 +3,8 @@
 #include "Detectors.h"
 #include "Sources.h"
 #include "Inhomogeneity.h"
+#include "directProblemUtils.h"
+#include "matrix_utils.h"
 
 using namespace std;
 
@@ -22,7 +24,7 @@ int main()
 	// на неоднородности
 	// объявляем массив a
 	vector<complex<float>> a(N_SIXTH_DEGREE);
-	//определяем массив a 
+	// определяем массив a 
 	SetArrayA(a);
 	// пишем в файл массив А
 	WriteArrayA(a, string("matrix_a.txt"));
@@ -30,7 +32,7 @@ int main()
 	// на детекторе
 	// объявляем массив overline_a
 	vector<complex<float>> overline_a(N_FIFTH_DEGREE);
-	//определяем массив overline_a на детекторе
+	// определяем массив overline_a на детекторе
 	SetArrayOverlineA(overline_a);
 	// пишем в файл массив overline_a
 	WriteArrayOverlineA(overline_a, string("matrix_overline_a.txt"));
@@ -41,48 +43,30 @@ int main()
 	// печатаем значение акустического поля на неоднородности и на детекотре в файл
 	WriteSourceValues(source, string("Source.txt"));
 
-	/*
-	// задаём детекторы
-	CDetectors detectors;
-
-	// задаём уровень детектора
-	detectors.SetLevel(1.1f);
-
-	// задаём шаг для интегрирования
-	detectors.SetStep(inhomogeneity.GetStep());
-
-	// определяем массив overline_А на детекторе
-	detectors.SetArrayA();
-
-	// печатаем массив overline_А
-	detectors.WriteArrayA(string("matrix_overline_a"));
-
-	// пробегаемся по всем источникам
-	for (size_t count = 0; count < source.GetNumber(); ++count)
-	{
-		// 
-	}
-
-	// получаем поле в детекторе
-
-//	detectors.SetFields();
-
-
-
-	/*
-
-	// для нахождения u^(1) составляем СЛАУ основная матрица * u^(1) = правой части
-	// substantiveMatrix[ii][jj] * numbered_u[jj] = rightPartEquation[ii]
-	vector<complex<double>> rightPartEquation(N_QUBE, complex<double>());
-	vector<complex<double>> numbered_u(N_QUBE);
-
-	vector<vector<complex<double>>> substantiveMatrix(N_QUBE,
-		vector<complex<double>>(N_QUBE, complex<double>()));
-
-	vector<vector<complex<double>>> overline_u(NUMBER_PARTITION_POINTS + 1,
-		vector<complex<double>>(NUMBER_PARTITION_POINTS + 1, complex<double>()));
+	// Для получения полей на детекторе u получаем СЛАУ
+	// выделяем память для основной матрицы, правой части и вектора неизвестных
+	vector<vector<complex<float>>> substantiveMatrix(N_QUBE, vector<complex<float>>(N_QUBE));
+	vector<complex<float>> rightPartEquation(N_QUBE);
+	vector<complex<float>> u(N_QUBE);
 
 	GetSubstantiveMatrix(a, xi, substantiveMatrix);
+
+	// память для значения поля в детекторе N_SQUARED
+	vector<complex<float>> overline_u(N_SQUARED);
+
+	ofstream file_overline_u("matrix_overline_u.txt");
+	file_overline_u << fixed << setprecision(6);
+
+	// пробегаемся по всем источникам
+	for (size_t count = 0; count < source.numberSource; ++count)
+	{
+		// для нахождения u^(1) составляем СЛАУ основная матрица * u^(1) = правой части
+		// substantiveMatrix[ii][jj] * u[jj] = rightPartEquation[ii]
+		GetRightPartEquation(source, count, rightPartEquation);
+		SolveSlauGaussa(substantiveMatrix, rightPartEquation, u);
+	}
+
+/*
 	Lasting("The computation time of the matrix inside the squared", time);
 
 	ofstream file_overline_u("matrix_overline_u.txt");
@@ -109,5 +93,7 @@ int main()
 
 	Lasting("The total time of the program", timeBegin);
 	*/
+	file_overline_u.close();
+
 	return 0;
 }
