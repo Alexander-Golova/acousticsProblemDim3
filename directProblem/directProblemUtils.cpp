@@ -51,3 +51,38 @@ void GetRightPartEquation(const Sources & source, const size_t count, std::vecto
 		}
 	}
 }
+
+void GetOverlineU(const Sources & source, size_t count, const vector<complex<float>>& overline_a, const vector<float>& xi,
+	const vector<complex<float>>& u, vector<complex<float>>& overline_u)
+{
+	size_t coord;
+	size_t ii;
+	for (size_t i = 0; i < N; ++i)
+	{
+		for (size_t j = 0; j < N; ++j)
+		{
+			coord = N * i + j;
+			overline_u[coord] = source.Function(source.node[count], i * step, j * step, detectorLevel);
+		}
+	}
+	/*
+	for (size_t i = 0; i < N; ++i)
+	{
+		for (size_t j = 0; j < N; ++j)
+		{
+			for (size_t p = 0; p < N; ++p)
+			{
+				for (size_t q = 0; q < N; ++q)
+				{
+					for (size_t r = 0; r < N; ++r)
+					{
+						coord = N_FOURTH_DEGREE * i + N_QUBE * j + N_SQUARED * p + N * q + r;
+						ii = N_SQUARED * p + N * q + r;
+						overline_u[coord] -= overline_a[coord] * xi[ii] * u[ii];
+					}
+				}
+			}
+		}
+	}*/
+
+}
