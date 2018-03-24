@@ -147,9 +147,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="BasicDataProblem.h" />
-    <ClInclude Include="CDetectors.h" />
-    <ClInclude Include="CInhomogeneity.h" />
-    <ClInclude Include="CSourses.h" />
     <ClInclude Include="Detectors.h" />
     <ClInclude Include="directProblemUtils.h" />
     <ClInclude Include="Inhomogeneity.h" />
@@ -160,9 +157,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="BasicDataProblem.cpp" />
-    <ClCompile Include="CDetectors.cpp" />
-    <ClCompile Include="CInhomogeneity.cpp" />
-    <ClCompile Include="CSourses.cpp" />
     <ClCompile Include="Detectors.cpp" />
     <ClCompile Include="directProblemUtils.cpp" />
     <ClCompile Include="Inhomogeneity.cpp" />

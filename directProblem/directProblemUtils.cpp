@@ -65,7 +65,7 @@ void GetOverlineU(const Sources & source, size_t count, const vector<complex<flo
 			overline_u[coord] = source.Function(source.node[count], i * step, j * step, detectorLevel);
 		}
 	}
-	/*
+	
 	for (size_t i = 0; i < N; ++i)
 	{
 		for (size_t j = 0; j < N; ++j)
@@ -76,13 +76,13 @@ void GetOverlineU(const Sources & source, size_t count, const vector<complex<flo
 				{
 					for (size_t r = 0; r < N; ++r)
 					{
-						coord = N_FOURTH_DEGREE * i + N_QUBE * j + N_SQUARED * p + N * q + r;
+						coord = N * i + j;
 						ii = N_SQUARED * p + N * q + r;
 						overline_u[coord] -= overline_a[coord] * xi[ii] * u[ii];
 					}
 				}
 			}
 		}
-	}*/
+	}
 
 }

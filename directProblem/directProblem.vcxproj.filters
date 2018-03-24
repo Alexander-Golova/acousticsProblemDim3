@@ -24,16 +24,7 @@
     <ClInclude Include="targetver.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="CInhomogeneity.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="BasicDataProblem.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CSourses.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="CDetectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Sources.h">
@@ -57,15 +48,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CInhomogeneity.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CSourses.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="CDetectors.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="BasicDataProblem.cpp">
