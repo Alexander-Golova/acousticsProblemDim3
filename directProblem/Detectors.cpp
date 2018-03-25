@@ -55,3 +55,16 @@ void LoadingArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::st
 	}
 	f_overline_a.close();
 }
+
+void LoadingOverlineU(const Sources & source, vector<complex<float>> & overline_u, string name)
+{
+	ifstream f_overline_u(name);
+	for (size_t count = 0; count < source.numberSource; ++count)
+	{
+		for (size_t i = 0; i < N_SQUARED; ++i)
+		{
+			f_overline_u >> overline_u[count * N_SQUARED + i];
+		}
+	}
+	f_overline_u.close();
+}
