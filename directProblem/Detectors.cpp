@@ -45,3 +45,13 @@ void WriteArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::stri
 	}
 	f_overline_a.close();
 }
+
+void LoadingArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::string name)
+{
+	ifstream f_overline_a(name);
+	for (size_t i = 0; i < N_FIFTH_DEGREE; ++i)
+	{
+		f_overline_a >> overline_a[i];
+	}
+	f_overline_a.close();
+}

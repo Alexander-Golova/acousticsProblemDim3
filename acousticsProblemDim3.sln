@@ -5,7 +5,9 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "inverseProblemQuadratureSamplingMethod", "inverseProblemQuadratureSamplingMethod\inverseProblemQuadratureSamplingMethod.vcxproj", "{2AE85E97-7563-4A2A-B3FB-E9F09A361A6A}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "directProblem", "directProblem\directProblem.vcxproj", "{A6600953-25E9-45A6-8326-02451F079724}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "DirectProblem", "directProblem\directProblem.vcxproj", "{A6600953-25E9-45A6-8326-02451F079724}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "InverseProblem", "InverseProblem\InverseProblem.vcxproj", "{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -31,6 +33,14 @@ Global
 		{A6600953-25E9-45A6-8326-02451F079724}.Release|x64.Build.0 = Release|x64
 		{A6600953-25E9-45A6-8326-02451F079724}.Release|x86.ActiveCfg = Release|Win32
 		{A6600953-25E9-45A6-8326-02451F079724}.Release|x86.Build.0 = Release|Win32
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Debug|x64.ActiveCfg = Debug|x64
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Debug|x64.Build.0 = Debug|x64
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Debug|x86.ActiveCfg = Debug|Win32
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Debug|x86.Build.0 = Debug|Win32
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Release|x64.ActiveCfg = Release|x64
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Release|x64.Build.0 = Release|x64
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Release|x86.ActiveCfg = Release|Win32
+		{EDD2819C-ABFD-4A6E-9060-B783FF5997BA}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

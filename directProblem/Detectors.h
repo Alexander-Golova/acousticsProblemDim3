@@ -5,3 +5,5 @@
 void SetArrayOverlineA(std::vector<std::complex<float>> & overline_a);
 
 void WriteArrayOverlineA(std::vector<std::complex<float>> & overline_a, std::string name);
+
+void LoadingArrayOverlineA(std::vector<std::complex<float>> & overline_a, std::string name);
