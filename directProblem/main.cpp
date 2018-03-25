@@ -73,40 +73,10 @@ int main()
 			file_overline_u << overline_u[i] << " ";
 		}
 	}
+	file_overline_u.close();
 
 	double duration = t.elapsed();
-
 	cout << "The total time of the program " << duration << std::endl;
-
-
-/*
-	Lasting("The computation time of the matrix inside the squared", time);
-
-	ofstream file_overline_u("matrix_overline_u.txt");
-	file_overline_u << fixed << setprecision(6);
-
-	for (size_t count = 0; count < source.numberSource; ++count)
-	{
-		GetRightPartEquation(source, count, rightPartEquation);
-		SolveSlauGaussa(substantiveMatrix, rightPartEquation, numbered_u);
-		InverseRenumbering(numbered_u, u);
-		Lasting("Finding the acoustic pressure in R", time);
-		
-		GetOverlineU(source, count, overline_a, xi, u, overline_u);
-		for (size_t i = 0; i <= NUMBER_PARTITION_POINTS; ++i)
-		{
-			for (size_t j = 0; j <= NUMBER_PARTITION_POINTS; ++j)
-			{
-				file_overline_u << overline_u[i][j] << " ";
-			}
-		}
-		Lasting("Finding the acoustic pressure in X", time);		
-	}
-	file_overline_u.close();
-
-	Lasting("The total time of the program", timeBegin);
-	*/
-	file_overline_u.close();
 
 	return 0;
 }

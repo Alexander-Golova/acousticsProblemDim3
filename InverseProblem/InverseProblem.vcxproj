@@ -150,7 +150,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\directProblem\BasicDataProblem.cpp" />
-    <ClCompile Include="..\directProblem\basicFunctions.cpp" />
     <ClCompile Include="..\directProblem\Detectors.cpp" />
     <ClCompile Include="..\directProblem\Inhomogeneity.cpp" />
     <ClCompile Include="..\directProblem\matrix_utils.cpp" />
