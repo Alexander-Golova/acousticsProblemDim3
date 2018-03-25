@@ -83,3 +83,13 @@ void WriteArrayA(vector<complex<float>> & a, string name)
 	}
 	f_a.close();
 }
+
+void LoadingArrayA(std::vector<std::complex<float>>& a, std::string name)
+{
+	ifstream f_a(name);
+	for (size_t i = 0; i < N_SIXTH_DEGREE; ++i)
+	{
+		f_a >> a[i];
+	}
+	f_a.close();
+}
