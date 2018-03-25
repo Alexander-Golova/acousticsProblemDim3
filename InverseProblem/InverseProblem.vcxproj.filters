@@ -27,6 +27,9 @@
     <ClInclude Include="..\directProblem\Detectors.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="initialValue.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -48,6 +51,9 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\directProblem\matrix_utils.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="initialValue.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
