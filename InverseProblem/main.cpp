@@ -91,6 +91,12 @@ int main()
 		GetJacobian(source.numberSource, a, overline_a, xi, u, F_odd, F_even, F_0, F_00);
 
 		// находим матрицы А и В
+		GetMatrixA(source.numberSource, F_odd, F_even, F_0, F_00, A, alpha);
+		GetMatrixB(F_0, F_00, B, alpha);
+
+		//строим правую часть СЛАУ основаного метода Ньютона
+		// находим значения основного оператора F
+		GetOperatorF(source.numberSource, a, overline_a, xi, u, overline_u, Source_R, Source_X, F_part_odd, F_part_even);
 
 	}
 
