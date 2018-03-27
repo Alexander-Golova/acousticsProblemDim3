@@ -269,3 +269,43 @@ void GetXi(const size_t numberSource,
 	// находим xi
 	SolveSlauGaussa(A[numberSource], b_right[numberSource], xi);
 }
+
+void GetU(const size_t numberSource,
+	const vector<vector<vector<complex<float>>>> & A,
+	const vector<vector<complex<float>>> & inverseMatrixB,
+	vector<vector<complex<float>>> & b_right,
+	const vector<complex<float>>& xi,
+	vector<vector<complex<float>>>& u)
+{
+	vector<complex<float>> supportingVectorSQ(N_QUBE, complex<float>());
+
+	for (size_t count = 0; count < numberSource; ++count)
+	{
+		MultTransposedMatrixVector(A[count], xi, supportingVectorSQ);
+		SubVectors(b_right[count], supportingVectorSQ);
+		MultMatrixVector(inverseMatrixB, b_right[count], u[count]);
+	}
+}
+
+void ProjectionXi(vector<complex<float>> & xi)
+{
+	for (size_t i = 0; i < N_QUBE; ++i)
+	{
+		xi[i] = real(xi[i]);
+		if (real(xi[i]) <= 0.0f)
+		{
+			xi[i] = { 0.0f, 0.0f };
+		}
+	}
+}
+
+void PrintXi(const vector<complex<float>> & xi, size_t iteration)
+{
+	ofstream f_xi("approximate_xi_" + to_string(iteration + 1) + ".txt");
+	f_xi << fixed << setprecision(6);
+	for (size_t i = 0; i < N_QUBE; ++i)
+	{
+		f_xi << real(xi[i]) << " ";
+	}
+	f_xi.close();
+}

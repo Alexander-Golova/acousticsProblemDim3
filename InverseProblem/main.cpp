@@ -104,6 +104,15 @@ int main()
 
 		InvertMatrix(B, inverseMatrixB);
 		GetXi(source.numberSource, A, inverseMatrixB, b_right, xi);
+
+		GetU(source.numberSource, A, inverseMatrixB, b_right, xi, u);
+
+		alpha = alpha * multiplier;
+
+		ProjectionXi(xi);
+
+		PrintXi(xi, iteration);
+
 	}
 
 

@@ -62,3 +62,14 @@ void GetXi(const size_t numberSource,
 	const std::vector<std::vector<std::complex<float>>> & inverseMatrixB,
 	std::vector<std::vector<std::complex<float>>> & b_right,
 	std::vector<std::complex<float>> & xi);
+
+void GetU(const size_t numberSource,
+	const std::vector<std::vector<std::vector<std::complex<float>>>>  & A,
+	const std::vector<std::vector<std::complex<float>>> & inverseMatrixB,
+	std::vector<std::vector<std::complex<float>>> & b_right,
+	const std::vector<std::complex<float>> & xi,
+	std::vector<std::vector<std::complex<float>>> & u);
+
+void ProjectionXi(std::vector<std::complex<float>> & xi);
+
+void PrintXi(const std::vector<std::complex<float>> & xi, size_t iteration);
