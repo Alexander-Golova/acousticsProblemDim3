@@ -76,7 +76,7 @@ int main()
 	file_overline_u.close();
 
 	double duration = t.elapsed();
-	cout << "The total time of the program " << duration << std::endl;
+	cout << "The total time of the program " << duration << endl;
 
 	return 0;
 }
