@@ -3,7 +3,7 @@
 
 const std::complex<float> I = { 0.0f, 1.0f };
 
-const size_t NUMBER_PARTITION_POINTS = 10;
+const size_t NUMBER_PARTITION_POINTS = 4;
 
 const float inverseN = 1.0f / NUMBER_PARTITION_POINTS;
 

@@ -37,7 +37,7 @@ void GetJacobian(const size_t numberSource, const vector<complex<float>> & a, co
 			}
 		}
 	}
-
+	/*
 		for (size_t count = 0; count < numberSource; ++count)
 		{
 			for (size_t i = 0; i <= N; ++i)
@@ -60,7 +60,7 @@ void GetJacobian(const size_t numberSource, const vector<complex<float>> & a, co
 					}
 				}
 			}
-		}
+		}*/
 }
 
 void GetMatrixA(const size_t numberSource, const vector<vector<vector<complex<float>>>>& F_odd,
@@ -122,11 +122,11 @@ void GetOperatorF(const size_t numberSource, const vector<complex<float>>& a,
 
 	for (size_t count = 0; count < numberSource; ++count)
 	{
-		for (size_t i = 0; i <= N; ++i)
+		for (size_t i = 0; i < N; ++i)
 		{
-			for (size_t j = 0; j <= N; ++j)
+			for (size_t j = 0; j < N; ++j)
 			{
-				for (size_t k = 0; k <= N; ++k)
+				for (size_t k = 0; k < N; ++k)
 				{
 					ii = i * N_SQUARED + j * N + k;
 					for (size_t p = 0; p < N; ++p)
@@ -150,14 +150,13 @@ void GetOperatorF(const size_t numberSource, const vector<complex<float>>& a,
 		}
 	}
 
-
 	for (size_t count = 0; count < numberSource; ++count)
 	{
-		for (size_t i = 0; i <= N; ++i)
+		for (size_t i = 0; i < N; ++i)
 		{
-			for (size_t j = 0; j <= N; ++j)
+			for (size_t j = 0; j < N; ++j)
 			{
-				ii = i * (N + 1) + j;
+				ii = i * N + j;
 				F_part_even[count][ii] = overline_u[count * N_SQUARED + ii] - Source_X[count * N_SQUARED + ii]; // TODO
 				for (size_t p = 0; p < N; ++p)
 				{

@@ -98,7 +98,7 @@ int main()
 		// находим значения основного оператора F
 		GetOperatorF(source.numberSource, a, overline_a, xi, u, overline_u, Source_R, Source_X, F_part_odd, F_part_even);
 
-		GetValueDerivedFunction(source.numberSource, xi, u, F_odd, F_even, F_0, F_00, F_part_odd, F_part_even);
+		/*GetValueDerivedFunction(source.numberSource, xi, u, F_odd, F_even, F_0, F_00, F_part_odd, F_part_even);
 
 		Getb(source.numberSource, F_odd, F_even, F_0, F_00, F_part_odd, F_part_even, b_right);
 
@@ -112,16 +112,8 @@ int main()
 		ProjectionXi(xi);
 
 		PrintXi(xi, iteration);
-
+		*/
 	}
 
-
-
-
-
-
-
-
-
-    return 0;
+	return 0;
 }
