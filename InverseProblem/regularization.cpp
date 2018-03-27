@@ -175,3 +175,97 @@ void GetOperatorF(const size_t numberSource, const vector<complex<float>>& a,
 		}
 	}
 }
+
+void GetValueDerivedFunction(const size_t numberSource, const vector<complex<float>>& xi, const vector<vector<complex<float>>>& u,
+	const vector<vector<vector<complex<float>>>>& F_odd, const vector<vector<vector<complex<float>>>>& F_even,
+	const vector<vector<complex<float>>>& F_0, const vector<vector<complex<float>>>& F_00,
+	vector<vector<complex<float>>>& F_part_odd, vector<vector<complex<float>>>& F_part_even)
+{
+	vector<complex<float>> supportingVector(N_SQUARED);
+	vector<complex<float>> supportingVectorSQ(N_QUBE);
+
+	for (size_t count = 0; count < numberSource; ++count)
+	{
+		MultMatrixVector(F_odd[count], xi, supportingVectorSQ);
+		for (size_t i = 0; i < N_QUBE; ++i)
+		{
+			F_part_odd[count][i] = supportingVectorSQ[i] - F_part_odd[count][i];
+		}
+
+		MultMatrixVector(F_0, u[count], supportingVectorSQ);
+		for (size_t i = 0; i < N_QUBE; ++i)
+		{
+			F_part_odd[count][i] += supportingVectorSQ[i];
+		}
+
+		MultMatrixVector(F_even[count], xi, supportingVector);
+		for (size_t i = 0; i < N_SQUARED; ++i)
+		{
+			F_part_even[count][i] = supportingVector[i] - F_part_even[count][i];
+		}
+		MultMatrixVector(F_00, u[count], supportingVector);
+		for (size_t i = 0; i < N_SQUARED; ++i)
+		{
+			F_part_even[count][i] += supportingVector[i];
+		}
+	}
+}
+
+// b_0 задачи находится в b[numberSource]
+void Getb(const size_t numberSource,
+	const vector<vector<vector<complex<float>>>>& F_odd, const vector<vector<vector<complex<float>>>>& F_even,
+	const vector<vector<complex<float>>>& F_0, const vector<vector<complex<float>>>& F_00,
+	const vector<vector<complex<float>>>& F_part_odd, const vector<vector<complex<float>>>& F_part_even,
+	vector<vector<complex<float>>> & b_right)
+{
+	vector<complex<float>> supportingVectorSQ(N_QUBE);
+
+	MultTransposedMatrixVector(F_odd[0], F_part_odd[0], b_right[numberSource]);
+	MultTransposedMatrixVector(F_even[0], F_part_even[0], supportingVectorSQ);
+	AddVectors(b_right[numberSource], supportingVectorSQ);
+	for (size_t count = 0; count < numberSource; ++count)
+	{
+		MultTransposedMatrixVector(F_odd[count], F_part_odd[count], supportingVectorSQ);
+		AddVectors(b_right[numberSource], supportingVectorSQ);
+		MultTransposedMatrixVector(F_even[count], F_part_even[count], supportingVectorSQ);
+		AddVectors(b_right[numberSource], supportingVectorSQ);
+	}
+
+	for (size_t count = 0; count < numberSource; ++count)
+	{
+		MultTransposedMatrixVector(F_0, F_part_odd[count], b_right[count]);
+		MultTransposedMatrixVector(F_00, F_part_even[count], supportingVectorSQ);
+		AddVectors(b_right[count], supportingVectorSQ);
+	}
+}
+
+void GetXi(const size_t numberSource,
+	vector<vector<vector<complex<float>>>> & A,
+	const vector<vector<complex<float>>> & inverseMatrixB,
+	vector<vector<complex<float>>> & b_right,
+	vector<complex<float>>& xi)
+{
+	vector<vector<complex<float>>> auxiliaryMatrix(N_QUBE, vector<complex<float>>(N_QUBE));
+	vector<vector<complex<float>>> secondAuxiliaryMatrix(N_QUBE, vector<complex<float>>(N_QUBE));
+	vector<complex<float>> supportingVectorSQ(N_QUBE);
+	vector<complex<float>> secondSupportingVectorSQ(N_QUBE);
+
+	//для левой части уравнения с xi все складываем в A_00 -> A[numberSource]
+	for (size_t count = 0; count < numberSource; ++count)
+	{
+		MultMatrix(A[count], inverseMatrixB, auxiliaryMatrix);
+		MultMatrixTransposed(auxiliaryMatrix, A[count], secondAuxiliaryMatrix);
+		SubSquareMatrices(A[numberSource], secondAuxiliaryMatrix);
+	}
+
+	//для правой части уравнения с xi все складываем в b0 - b[numberSource]
+	for (size_t count = 0; count < numberSource; ++count)
+	{
+		MultMatrixVector(inverseMatrixB, b_right[count], supportingVectorSQ);
+		MultMatrixVector(A[count], supportingVectorSQ, secondSupportingVectorSQ);
+		SubVectors(b_right[numberSource], secondSupportingVectorSQ);
+	}
+
+	// находим xi
+	SolveSlauGaussa(A[numberSource], b_right[numberSource], xi);
+}
