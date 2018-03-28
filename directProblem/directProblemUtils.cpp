@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void GetSubstantiveMatrix(const vector<complex<float>> & a, const vector<float> & xi, vector<vector<complex<float>>> & substantiveMatrix)
+void GetSubstantiveMatrix(const vector<complex<float>> & a, const vector<float> & xi, vector<vector<complex<float>>> & substantiveMatrix) noexcept
 {
 	size_t ii, jj;
 	size_t coord;
@@ -36,7 +36,7 @@ void GetSubstantiveMatrix(const vector<complex<float>> & a, const vector<float> 
 
 }
 
-void GetRightPartEquation(const Sources & source, const size_t count, std::vector<std::complex<float>> & rightPartEquation)
+void GetRightPartEquation(const Sources & source, const size_t count, std::vector<std::complex<float>> & rightPartEquation) noexcept
 {
 	size_t ii;
 	for (size_t i = 0; i < N; ++i)
@@ -53,7 +53,7 @@ void GetRightPartEquation(const Sources & source, const size_t count, std::vecto
 }
 
 void GetOverlineU(const Sources & source, size_t count, const vector<complex<float>>& overline_a, const vector<float>& xi,
-	const vector<complex<float>>& u, vector<complex<float>>& overline_u)
+	const vector<complex<float>>& u, vector<complex<float>>& overline_u) noexcept
 {
 	size_t coord;
 	size_t ii;

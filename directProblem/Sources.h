@@ -15,7 +15,7 @@ struct Sources
 
 
 // печать значений источника 
-void WriteSourceValues(const Sources & source, std::string name);
+void WriteSourceValues(const Sources & source, std::string name) noexcept;
 
 // загрузка
-void LoadingSourceValues(const Sources & source, std::vector<std::complex<float>> & Source_R, std::vector<std::complex<float>> & Source_X, std::string name);
+void LoadingSourceValues(const Sources & source, std::vector<std::complex<float>> & Source_R, std::vector<std::complex<float>> & Source_X, std::string name) noexcept;

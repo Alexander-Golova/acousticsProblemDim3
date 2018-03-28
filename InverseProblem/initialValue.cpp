@@ -4,7 +4,7 @@
 
 using namespace std;
 
-void InitialValueU(const size_t numberSource, vector<vector<complex<float>>> & u, 	vector<complex<float>> & Source_R)
+void InitialValueU(const size_t numberSource, vector<vector<complex<float>>> & u, 	vector<complex<float>> & Source_R) noexcept
 {
 	for (size_t count = 0; count < numberSource; ++count)
 	{
@@ -21,7 +21,7 @@ void InitialValueU(const size_t numberSource, vector<vector<complex<float>>> & u
 	}
 }
 
-void InitialValueXi(vector<complex<float>> & xi)
+void InitialValueXi(vector<complex<float>> & xi) noexcept
 {
 	for (size_t i = 0; i < N_QUBE; ++i)
 	{

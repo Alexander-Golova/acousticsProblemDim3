@@ -9,7 +9,7 @@ complex<float> Sources::Function(const Point source, const float x, const float 
 	return -exp(I * omega * dist / c_0) * INV_FOUR_PI / dist;
 }
 
-void WriteSourceValues(const Sources & source, string name)
+void WriteSourceValues(const Sources & source, string name) noexcept
 {
 	ofstream fileSource(name);
 	fileSource << fixed << setprecision(6);
@@ -37,7 +37,7 @@ void WriteSourceValues(const Sources & source, string name)
 	fileSource.close();
 }
 
-void LoadingSourceValues(const Sources & source, vector<complex<float>> & Source_R, vector<complex<float>> & Source_X, string name)
+void LoadingSourceValues(const Sources & source, vector<complex<float>> & Source_R, vector<complex<float>> & Source_X, string name) noexcept
 {
 	ifstream fileSource(name);
 	for (size_t count = 0; count < source.numberSource; ++count)

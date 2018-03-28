@@ -6,7 +6,7 @@ using namespace std;
 void GetJacobian(const size_t numberSource, const vector<complex<float>> & a, const vector<complex<float>> & overline_a,
 	const vector<complex<float>> & xi, const vector<vector<complex<float>>> & u,
 	vector<vector<vector<complex<float>>>> & F_odd, vector<vector<vector<complex<float>>>> & F_even,
-	vector<vector<complex<float>>> & F_0, vector<vector<complex<float>>> & F_00)
+	vector<vector<complex<float>>> & F_0, vector<vector<complex<float>>> & F_00) noexcept
 {
 	size_t ii, jj, coord;
 
@@ -37,12 +37,11 @@ void GetJacobian(const size_t numberSource, const vector<complex<float>> & a, co
 			}
 		}
 	}
-	/*
 		for (size_t count = 0; count < numberSource; ++count)
 		{
-			for (size_t i = 0; i <= N; ++i)
+			for (size_t i = 0; i < N; ++i)
 			{
-				for (size_t j = 0; j <= N; ++j)
+				for (size_t j = 0; j < N; ++j)
 				{
 					ii = i * N + j;
 					for (size_t p = 0; p < N; ++p)
@@ -60,12 +59,12 @@ void GetJacobian(const size_t numberSource, const vector<complex<float>> & a, co
 					}
 				}
 			}
-		}*/
+		}
 }
 
 void GetMatrixA(const size_t numberSource, const vector<vector<vector<complex<float>>>>& F_odd,
 	const vector<vector<vector<complex<float>>>>& F_even, const vector<vector<complex<float>>>& F_0,
-	const vector<vector<complex<float>>>& F_00, vector<vector<vector<complex<float>>>>& A, const float alpha)
+	const vector<vector<complex<float>>>& F_00, vector<vector<vector<complex<float>>>>& A, const float alpha) noexcept
 {
 	// A_0 задачи имеет номер A[numberSource]
 	vector<vector<complex<float>>> auxiliaryMatrix(N_QUBE, vector<complex<float>>(N_QUBE));
@@ -97,7 +96,7 @@ void GetMatrixA(const size_t numberSource, const vector<vector<vector<complex<fl
 }
 
 void GetMatrixB(const vector<vector<complex<float>>>& F_0, const vector<vector<complex<float>>>& F_00,
-	vector<vector<complex<float>>>& B, const float alpha)
+	vector<vector<complex<float>>>& B, const float alpha) noexcept
 {
 	vector<vector<complex<float>>> auxiliaryMatrix(N_QUBE, vector<complex<float>>(N_QUBE));
 
@@ -116,7 +115,7 @@ void GetOperatorF(const size_t numberSource, const vector<complex<float>>& a,
 	const vector<complex<float>>& overline_a, const vector<complex<float>>& xi,
 	const vector<vector<complex<float>>>& u, const vector<complex<float>>& overline_u,
 	const vector<complex<float>>& Source_R, const vector<complex<float>>& Source_X,
-	vector<vector<complex<float>>>& F_part_odd, vector<vector<complex<float>>>& F_part_even)
+	vector<vector<complex<float>>>& F_part_odd, vector<vector<complex<float>>>& F_part_even) noexcept
 {
 	size_t ii, jj, coord;
 
@@ -178,7 +177,7 @@ void GetOperatorF(const size_t numberSource, const vector<complex<float>>& a,
 void GetValueDerivedFunction(const size_t numberSource, const vector<complex<float>>& xi, const vector<vector<complex<float>>>& u,
 	const vector<vector<vector<complex<float>>>>& F_odd, const vector<vector<vector<complex<float>>>>& F_even,
 	const vector<vector<complex<float>>>& F_0, const vector<vector<complex<float>>>& F_00,
-	vector<vector<complex<float>>>& F_part_odd, vector<vector<complex<float>>>& F_part_even)
+	vector<vector<complex<float>>>& F_part_odd, vector<vector<complex<float>>>& F_part_even) noexcept
 {
 	vector<complex<float>> supportingVector(N_SQUARED);
 	vector<complex<float>> supportingVectorSQ(N_QUBE);
@@ -215,7 +214,7 @@ void Getb(const size_t numberSource,
 	const vector<vector<vector<complex<float>>>>& F_odd, const vector<vector<vector<complex<float>>>>& F_even,
 	const vector<vector<complex<float>>>& F_0, const vector<vector<complex<float>>>& F_00,
 	const vector<vector<complex<float>>>& F_part_odd, const vector<vector<complex<float>>>& F_part_even,
-	vector<vector<complex<float>>> & b_right)
+	vector<vector<complex<float>>> & b_right) noexcept
 {
 	vector<complex<float>> supportingVectorSQ(N_QUBE);
 
@@ -242,7 +241,7 @@ void GetXi(const size_t numberSource,
 	vector<vector<vector<complex<float>>>> & A,
 	const vector<vector<complex<float>>> & inverseMatrixB,
 	vector<vector<complex<float>>> & b_right,
-	vector<complex<float>>& xi)
+	vector<complex<float>>& xi) noexcept
 {
 	vector<vector<complex<float>>> auxiliaryMatrix(N_QUBE, vector<complex<float>>(N_QUBE));
 	vector<vector<complex<float>>> secondAuxiliaryMatrix(N_QUBE, vector<complex<float>>(N_QUBE));
@@ -274,7 +273,7 @@ void GetU(const size_t numberSource,
 	const vector<vector<complex<float>>> & inverseMatrixB,
 	vector<vector<complex<float>>> & b_right,
 	const vector<complex<float>>& xi,
-	vector<vector<complex<float>>>& u)
+	vector<vector<complex<float>>>& u) noexcept
 {
 	vector<complex<float>> supportingVectorSQ(N_QUBE, complex<float>());
 
@@ -286,7 +285,7 @@ void GetU(const size_t numberSource,
 	}
 }
 
-void ProjectionXi(vector<complex<float>> & xi)
+void ProjectionXi(vector<complex<float>> & xi) noexcept
 {
 	for (size_t i = 0; i < N_QUBE; ++i)
 	{
@@ -298,7 +297,7 @@ void ProjectionXi(vector<complex<float>> & xi)
 	}
 }
 
-void PrintXi(const vector<complex<float>> & xi, size_t iteration)
+void PrintXi(const vector<complex<float>> & xi, size_t iteration) noexcept
 {
 	ofstream f_xi("approximate_xi_" + to_string(iteration + 1) + ".txt");
 	f_xi << fixed << setprecision(6);

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void SetRefractionIndex(vector<float> & xi)
+void SetRefractionIndex(vector<float> & xi) noexcept
 {
 	const float sigma = 16.0f;
 	size_t coord;
@@ -20,7 +20,7 @@ void SetRefractionIndex(vector<float> & xi)
 	}
 }
 
-void WriteRefractionIndex(vector<float>& xi, string name)
+void WriteRefractionIndex(vector<float>& xi, string name) noexcept
 {
 	ofstream file_xi(name);
 	file_xi << fixed << setprecision(6);
@@ -31,7 +31,7 @@ void WriteRefractionIndex(vector<float>& xi, string name)
 	file_xi.close();
 }
 
-void SetArrayA(vector<complex<float>> & a)
+void SetArrayA(vector<complex<float>> & a) noexcept
 {
 	float dist;
 	size_t coord;
@@ -73,7 +73,7 @@ void SetArrayA(vector<complex<float>> & a)
 	}
 }
 
-void WriteArrayA(vector<complex<float>> & a, string name)
+void WriteArrayA(vector<complex<float>> & a, string name) noexcept
 {
 	ofstream f_a(name);
 	f_a << fixed << setprecision(6);
@@ -84,7 +84,7 @@ void WriteArrayA(vector<complex<float>> & a, string name)
 	f_a.close();
 }
 
-void LoadingArrayA(std::vector<std::complex<float>>& a, std::string name)
+void LoadingArrayA(std::vector<std::complex<float>>& a, std::string name) noexcept
 {
 	ifstream f_a(name);
 	for (size_t i = 0; i < N_SIXTH_DEGREE; ++i)

@@ -3,7 +3,7 @@
 
 using namespace std;
 
-void SetArrayOverlineA(std::vector<std::complex<float>> & overline_a)
+void SetArrayOverlineA(std::vector<std::complex<float>> & overline_a) noexcept
 {
 	float dist;
 	size_t coord;
@@ -35,7 +35,7 @@ void SetArrayOverlineA(std::vector<std::complex<float>> & overline_a)
 	}
 }
 
-void WriteArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::string name)
+void WriteArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::string name) noexcept
 {
 	ofstream f_overline_a(name);
 	f_overline_a << fixed << setprecision(6);
@@ -46,7 +46,7 @@ void WriteArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::stri
 	f_overline_a.close();
 }
 
-void LoadingArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::string name)
+void LoadingArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::string name) noexcept
 {
 	ifstream f_overline_a(name);
 	for (size_t i = 0; i < N_FIFTH_DEGREE; ++i)
@@ -56,7 +56,7 @@ void LoadingArrayOverlineA(std::vector<std::complex<float>>& overline_a, std::st
 	f_overline_a.close();
 }
 
-void LoadingOverlineU(const Sources & source, vector<complex<float>> & overline_u, string name)
+void LoadingOverlineU(const Sources & source, vector<complex<float>> & overline_u, string name) noexcept
 {
 	ifstream f_overline_u(name);
 	for (size_t count = 0; count < source.numberSource; ++count)
