@@ -53,7 +53,7 @@ void GetJacobian(const size_t numberSource, const vector<complex<float>> & a, co
 								jj = p * N_SQUARED + q * N + r;
 								coord = ii * N_QUBE + jj;
 								F_even[count][ii][jj] = overline_a[coord] * u[count][jj]; // TODO
-								F_00[ii][jj] = overline_a[coord] * xi[coord]; // TODO
+								F_00[ii][jj] = overline_a[coord] * xi[jj]; // TODO
 							}
 						}
 					}
